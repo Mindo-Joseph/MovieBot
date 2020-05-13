@@ -11,4 +11,25 @@ class Movies
                     'thriller' => 53, 'war' => 10_752, 'western' => 37 }
     genres_hash[key]
   end
+
+  def query_database_based_on_genre(genre_code)
+    response = RestClient::Request.new(
+      :method => :get,
+      :url => "https://api.themoviedb.org/3/discover/movie?api_key=#{$api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
+    ).execute
+    result = JSON.parse(response.to_s)
+    result["results"][0]
+  end
+  def create_keys_array(hash)
+    hash.each_with_object([]) do |(k,v),keys|
+      keys << k
+    end
+  end
+
 end
+
+c = Movies.new
+v = c.query_database_based_on_genre(28)
+f = c.create_keys_array(v)
+print f
+puts
