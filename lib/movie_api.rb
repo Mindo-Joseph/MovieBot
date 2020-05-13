@@ -56,3 +56,19 @@ class Movies
 
 
 end
+
+# movie = Movies.new
+# data = movie.query_database_based_on_genre(28)
+# keps = movie.create_keys_array(data)
+# data.each do |k|
+#   dets = movie.fetch_movie_details(k)
+#   link = movie.generate_youtube_link(k)
+#   print dets 
+#   print "\n"
+#   print link 
+#   print "\n"
+#   print "\n"
+
+# end
+
+
