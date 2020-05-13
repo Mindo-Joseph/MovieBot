@@ -18,9 +18,10 @@ class Movies
       :url => "https://api.themoviedb.org/3/discover/movie?api_key=#{$api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
     ).execute
     result = JSON.parse(response.to_s)
-    result["results"][0]
+    result["results"][0,3]
   end
   def create_keys_array(hash)
+    hash = hash[0]
     hash.each_with_object([]) do |(k,v),keys|
       keys << k
     end
