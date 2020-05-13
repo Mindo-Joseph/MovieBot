@@ -2,6 +2,7 @@
 
 require 'telegram/bot'
 require './token.rb'
+require './lib/movie_api.rb'
 token = $token
 
 Telegram::Bot::Client.run(token) do |bot|
@@ -18,6 +19,9 @@ Telegram::Bot::Client.run(token) do |bot|
 
     when '/action'
       bot.api.send_message(chat_id: message.chat.id, text: 'Great choice! Lemme get what might interest you')
+      code = Movies.new.genre_code("action")
+      result = Movies.new.query_database_based_on_genre(code)
+      bot.api.send_message(chat_id: message.chat.id, text: "#{result}")
     end
   end
 end
