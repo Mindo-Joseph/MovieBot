@@ -24,6 +24,7 @@ class Movies
     hash = hash[0]
     hash.each_with_object([]) do |(k,v),keys|
       keys << k
+      keys.select! { |tag| tag == "popularity" || tag == "poster_path" || tag == "title" || tag == "overview"  || tag == "release_date"}
     end
   end
 
@@ -34,3 +35,6 @@ v = c.query_database_based_on_genre(28)
 f = c.create_keys_array(v)
 print f
 puts
+# letters = Hash["one" => 1, "two" => 2]
+# result = letters.fetch("one")
+# print result
