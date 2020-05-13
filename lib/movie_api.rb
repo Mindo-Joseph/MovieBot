@@ -2,6 +2,8 @@ require 'rest-client'
 require '/home/joe/Desktop/Projects/TeleBot/token.rb'
 require 'json'
 class Movies
+  $keys_to_use 
+  
   def genre_code(key)
     genres_hash = Hash.new('genre')
     genres_hash = { 'action' => 28, 'drama' => 18, 'adventure' => 12, 
@@ -24,17 +26,33 @@ class Movies
     hash = hash[0]
     hash.each_with_object([]) do |(k,v),keys|
       keys << k
-      keys.select! { |tag| tag == "popularity" || tag == "poster_path" || tag == "title" || tag == "overview"  || tag == "release_date"}
+      $keys_to_use = keys.select { |tag| tag == "popularity" || tag == "title" || tag == "overview"  || tag == "release_date"}
     end
+    $keys_to_use
+  end
+  def fetch_movie_details(item)
+    details = []
+    $keys_to_use.each do |det|
+      c = item.fetch(det)
+      details << c
+    end
+    details
+  end
+  def generate_youtube_link(item)
+    id = item.fetch("id")
+    response = RestClient::Request.new(
+      :method => :get,
+      :url => "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{$api_key}"
+
+    ).execute
+    result = JSON.parse(response.to_s)
+    key = result["results"][0].fetch('key')
+    "https://www.youtube.com/watch?v=#{key}"
+  end
+  def generate_poster_link(item)
+    img_url = item.fetch("poster_path")
+    "https://image.tmdb.org/t/p/w500/#{img_url}"
   end
 
-end
 
-c = Movies.new
-v = c.query_database_based_on_genre(28)
-f = c.create_keys_array(v)
-print f
-puts
-# letters = Hash["one" => 1, "two" => 2]
-# result = letters.fetch("one")
-# print result
+end
