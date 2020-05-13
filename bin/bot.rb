@@ -19,9 +19,15 @@ Telegram::Bot::Client.run(token) do |bot|
 
     when '/action'
       bot.api.send_message(chat_id: message.chat.id, text: 'Great choice! Lemme get what might interest you')
-      code = Movies.new.genre_code("action")
-      result = Movies.new.query_database_based_on_genre(code)
-      bot.api.send_message(chat_id: message.chat.id, text: "#{result}")
+      movie = Movies.new
+      code = movie.genre_code("action")
+      result = movie.query_database_based_on_genre(code)
+      text_array = movie.fetch_movie_details(result[0])
+      trailer = movie.generate_youtube_link(result[0])
+      image = movie.generate_poster_link(result[0])
+      bot.api.send_photo(chat_id: message.chat.id, photo: image )
+      bot.api.send_message(chat_id: message.chat.id, text: "Rating %s \nTitle %s \nOverview: %s \nRelease Date %s" %text_array)
+      bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{trailer}")
     end
   end
 end
