@@ -9,7 +9,11 @@ RSpec.describe 'MovieTellBot' do
     it 'returns correct genre code' do
       expect(movies.genre_code('romance')).to eq(10_749)
     end
-    it 'generates an array of item keys' do
+    it 'gets movie details of relevant keys' do
+      data = movies.query_database_based_on_genre(28)
+      item = data[0]
+      details_array = movies.fetch_movie_details(item)
+      expect(details_array.length).to eq(4)
     end
   end
 end
