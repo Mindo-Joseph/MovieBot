@@ -3,7 +3,7 @@
 require 'telegram/bot'
 require './token.rb'
 require './lib/movie_api.rb'
-token = $token
+token = TOKEN
 movie = Movies.new
 
 Telegram::Bot::Client.run(token) do |bot|
@@ -13,7 +13,7 @@ Telegram::Bot::Client.run(token) do |bot|
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
       bot.api.send_message(chat_id: message.chat.id, text: 'Welcome, I am here to give you movie recommendations')
       bot.api.send_message(chat_id: message.chat.id, text: "
-        Type on one of the following commands for the genre you want \n /action for action movies \n /comedy for comedy \n /romance for romance \n or /stop to end this session  ")
+        Type on one of the following commands for the genre you want\n /action for action movies\n /comedy for comedy\n /romance for romance\n or /stop to end this session")
 
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}, hope to hear from you soon ")
@@ -28,14 +28,12 @@ Telegram::Bot::Client.run(token) do |bot|
         text_array = movie.fetch_movie_details(k)
         trailer = movie.generate_youtube_link(k)
         image = movie.generate_poster_link(k)
-        bot.api.send_photo(chat_id: message.chat.id, photo: image )
-        bot.api.send_message(chat_id: message.chat.id, text: "Rating %s \nTitle %s \nOverview: %s \nRelease Date %s" %text_array.values())
+        bot.api.send_photo(chat_id: message.chat.id, photo: image)
+        bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
+                                                                    rating: text_array.values[0], title: text_array.values[1], overview: text_array.values[2], release: text_array.values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{trailer}")
       end
-      
-      
 
     end
   end
 end
-

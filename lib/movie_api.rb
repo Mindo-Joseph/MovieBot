@@ -1,9 +1,9 @@
 require 'rest-client'
 require '/home/joe/Desktop/Projects/TeleBot/token.rb'
 require 'json'
+
 class Movies
-  @@keys_to_use = []
-  
+  @keys_to_use = []
 
   def genre_code(key)
     genres_hash = Hash.new('genre')
@@ -18,32 +18,31 @@ class Movies
   def query_database_based_on_genre(genre_code)
     response = RestClient::Request.new(
       method: :get,
-      url: "https://api.themoviedb.org/3/discover/movie?api_key=#{$api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
+      url: "https://api.themoviedb.org/3/discover/movie?api_key=#{API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
     ).execute
     result = JSON.parse(response.to_s)
     result['results'][0, 3]
   end
 
-  def create_keys_array(hash)
-    hash = hash[0]
-    hash.each_with_object([]) do |(k, _v), keys|
-      keys << k
-      @@keys_to_use = keys.select { |tag| tag == 'popularity' || tag == 'title' || tag == 'overview' || tag == 'release_date' }
-    end
-    @@keys_to_use
-  end
+  # def create_keys_array(hash)
+  #   hash = hash[0]
+  #   hash.each_with_object([]) do |(k, _v), keys|
+  #     keys << k
+  #      = keys.select { |tag| tag == 'popularity' || tag == 'title' || tag == 'overview' || tag == 'release_date' }
+  #   end
+  #
+  # end
 
   def fetch_movie_details(item)
-    item.select{ |k,v| k == "popularity" || k == "overview" || k == "release_date" || k == "title"}
-    
-    
+    categories = %w[popularity overview release_date title]
+    item.select { |k, _v| categories.include?(k) }
   end
 
   def generate_youtube_link(item)
     id = item.fetch('id')
     response = RestClient::Request.new(
       method: :get,
-      url: "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{$api_key}"
+      url: "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{API_KEY}"
     ).execute
     result = JSON.parse(response.to_s)
     key = result['results'][0].fetch('key')
@@ -54,11 +53,4 @@ class Movies
     img_url = item.fetch('poster_path')
     "https://image.tmdb.org/t/p/w500/#{img_url}"
   end
-
 end
-
-
-
-
-
-  
