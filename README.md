@@ -1,19 +1,24 @@
 ### MovieTell Bot
 This is a bot that shows you the trending movies in the selected genre and also shows trailers of the said movie
-It can also send you weekend movie recommendations of your choice
+
 
 ## Built With
 - Ruby
+## Installation
+- Clone the repository to your own machine
+- Once cloned open terminal and type   
+    bundle
+- This installs the project dependencies on your computer
+- Once installed, run the command
+    bin/bot.rb
+- Now this will start the bot
+- Head over to [Bot](http://t.me/MovieTellBot) and press "START"
 
 ### How to run tests
 - Clone this repository into your local environment
 - Then while in the current directory run 'rspec' in your terminal
 
 ## Live Demo
-
-
-
-
 
 👤 **Author**
 
