@@ -2,73 +2,63 @@ require 'rest-client'
 require '/home/joe/Desktop/Projects/TeleBot/token.rb'
 require 'json'
 class Movies
-  $keys_to_use 
+  @@keys_to_use = []
   
+
   def genre_code(key)
     genres_hash = Hash.new('genre')
-    genres_hash = { 'action' => 28, 'drama' => 18, 'adventure' => 12, 
+    genres_hash = { 'action' => 28, 'drama' => 18, 'adventure' => 12,
                     'animation' => 16, 'comedy' => 35, 'crime' => 80, 'documentary' => 99, 'family' => 10_751, 'fantasy' => 14, 'history' => 36,
                     'horror' => 27, 'music' => 10_402, 'mystery' => 9648,
-                    'romance' => 10_749, 'sci-fi' => 878, 'tv-movie' => 10_770, 
+                    'romance' => 10_749, 'sci-fi' => 878, 'tv-movie' => 10_770,
                     'thriller' => 53, 'war' => 10_752, 'western' => 37 }
     genres_hash[key]
   end
 
   def query_database_based_on_genre(genre_code)
     response = RestClient::Request.new(
-      :method => :get,
-      :url => "https://api.themoviedb.org/3/discover/movie?api_key=#{$api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
+      method: :get,
+      url: "https://api.themoviedb.org/3/discover/movie?api_key=#{$api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=#{genre_code}"
     ).execute
     result = JSON.parse(response.to_s)
-    result["results"][0,3]
+    result['results'][0, 3]
   end
+
   def create_keys_array(hash)
     hash = hash[0]
-    hash.each_with_object([]) do |(k,v),keys|
+    hash.each_with_object([]) do |(k, _v), keys|
       keys << k
-      $keys_to_use = keys.select { |tag| tag == "popularity" || tag == "title" || tag == "overview"  || tag == "release_date"}
+      @@keys_to_use = keys.select { |tag| tag == 'popularity' || tag == 'title' || tag == 'overview' || tag == 'release_date' }
     end
-    $keys_to_use
+    @@keys_to_use
   end
-  def fetch_movie_details(item)
-    details = []
-    $keys_to_use.each do |det|
-      c = item.fetch(det)
-      details << c
-    end
-    details
-  end
-  def generate_youtube_link(item)
-    id = item.fetch("id")
-    response = RestClient::Request.new(
-      :method => :get,
-      :url => "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{$api_key}"
 
+  def fetch_movie_details(item)
+    item.select{ |k,v| k == "popularity" || k == "overview" || k == "release_date" || k == "title"}
+    
+    
+  end
+
+  def generate_youtube_link(item)
+    id = item.fetch('id')
+    response = RestClient::Request.new(
+      method: :get,
+      url: "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{$api_key}"
     ).execute
     result = JSON.parse(response.to_s)
-    key = result["results"][0].fetch('key')
+    key = result['results'][0].fetch('key')
     "https://www.youtube.com/watch?v=#{key}"
   end
+
   def generate_poster_link(item)
-    img_url = item.fetch("poster_path")
+    img_url = item.fetch('poster_path')
     "https://image.tmdb.org/t/p/w500/#{img_url}"
   end
 
-
 end
 
-# movie = Movies.new
-# data = movie.query_database_based_on_genre(28)
-# keps = movie.create_keys_array(data)
-# data.each do |k|
-#   dets = movie.fetch_movie_details(k)
-#   link = movie.generate_youtube_link(k)
-#   print dets 
-#   print "\n"
-#   print link 
-#   print "\n"
-#   print "\n"
-
-# end
 
 
+
+
+  
