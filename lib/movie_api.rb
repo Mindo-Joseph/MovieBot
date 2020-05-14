@@ -1,7 +1,7 @@
 require 'rest-client'
 require '/home/joe/Desktop/Projects/TeleBot/token.rb'
 require 'json'
-
+require 'telegram/bot'
 class Movies
   @keys_to_use = []
 
@@ -53,4 +53,18 @@ class Movies
     img_url = item.fetch('poster_path')
     "https://image.tmdb.org/t/p/w500/#{img_url}"
   end
+end
+
+def result_data(item)
+  output = []
+  movie = Movies.new
+  image = movie.generate_poster_link(item)
+  text_array = movie.fetch_movie_details(item)
+  trailer = movie.generate_youtube_link(item)
+  output << image
+  output << text_array
+  output << trailer
+  return output
+
+  
 end
