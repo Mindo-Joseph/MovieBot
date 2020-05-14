@@ -1,3 +1,3 @@
-source
-gem install telegram - bot - ruby
-gem install rest - client
+source "https:rubygems.org " 
+gem "telegram-bot-ruby"
+gem "rest-client"
