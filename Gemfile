@@ -1,3 +1,3 @@
-source "https:rubygems.org " 
-gem "telegram-bot-ruby"
-gem "rest-client"
+source 'https:rubygems.org '
+gem 'rest-client'
+gem 'telegram-bot-ruby'

@@ -6,7 +6,6 @@ class Movies
   @keys_to_use = []
 
   def genre_code(key)
-    genres_hash = Hash.new('genre')
     genres_hash = { 'action' => 28, 'drama' => 18, 'adventure' => 12,
                     'animation' => 16, 'comedy' => 35, 'crime' => 80, 'documentary' => 99, 'family' => 10_751, 'fantasy' => 14, 'history' => 36,
                     'horror' => 27, 'music' => 10_402, 'mystery' => 9648,
@@ -23,15 +22,6 @@ class Movies
     result = JSON.parse(response.to_s)
     result['results'][0, 3]
   end
-
-  # def create_keys_array(hash)
-  #   hash = hash[0]
-  #   hash.each_with_object([]) do |(k, _v), keys|
-  #     keys << k
-  #      = keys.select { |tag| tag == 'popularity' || tag == 'title' || tag == 'overview' || tag == 'release_date' }
-  #   end
-  #
-  # end
 
   def fetch_movie_details(item)
     categories = %w[popularity overview release_date title]
@@ -64,7 +54,5 @@ def result_data(item)
   output << image
   output << text_array
   output << trailer
-  return output
-
-  
+  output
 end

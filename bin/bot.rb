@@ -13,7 +13,7 @@ Telegram::Bot::Client.run(token) do |bot|
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
       bot.api.send_message(chat_id: message.chat.id, text: 'Welcome, I am here to give you movie recommendations')
       bot.api.send_message(chat_id: message.chat.id, text: "
-        Type on one of the following commands for the genre you want\n /action for action movies\n /comedy for comedy\n /romance for romance\n or /stop to end this session")
+        Type on one of the following commands for the genre you want\n/action\n/comedy\n/romance\n/drama\n/adventure\n/crime\n/documentary\n/war\n/western or\n/stop to end this session")
 
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}, hope to hear from you soon ")
@@ -27,11 +27,10 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
 
-    
     when '/comedy'
       bot.api.send_message(chat_id: message.chat.id, text: 'Great choice! Lemme get comedy movies for you')
       bot.api.send_message(chat_id: message.chat.id, text: 'These are the top 3 highest movies today in your category')
@@ -41,7 +40,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/adventure'
@@ -53,7 +52,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/animation'
@@ -65,7 +64,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/crime'
@@ -77,7 +76,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/documentary'
@@ -89,7 +88,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/drama'
@@ -101,7 +100,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/family'
@@ -113,7 +112,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/fantasy'
@@ -125,7 +124,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/history'
@@ -137,7 +136,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/horror'
@@ -149,7 +148,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/music'
@@ -161,7 +160,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/mystery'
@@ -173,7 +172,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/romance'
@@ -185,7 +184,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/thriller'
@@ -197,7 +196,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/war'
@@ -209,7 +208,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/western'
@@ -221,7 +220,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/sci-fi'
@@ -233,7 +232,7 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     when '/tv-movie'
@@ -245,11 +244,10 @@ Telegram::Bot::Client.run(token) do |bot|
         c = result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                          rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
 
     end
   end
-  
 end
