@@ -4,6 +4,7 @@ require 'telegram/bot'
 require './token.rb'
 require './lib/movie_api.rb'
 token = $token
+movie = Movies.new
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
@@ -19,23 +20,22 @@ Telegram::Bot::Client.run(token) do |bot|
 
     when '/action'
       bot.api.send_message(chat_id: message.chat.id, text: 'Great choice! Lemme get what might interest you')
-      movie = Movies.new
-      code = movie.genre_code("action")
+      bot.api.send_message(chat_id: message.chat.id, text: 'These are the top 3 highest movies today in your category')
+      code = movie.genre_code('action')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
         image = movie.generate_poster_link(k)
         text_array = movie.fetch_movie_details(k)
         trailer = movie.generate_youtube_link(k)
+        image = movie.generate_poster_link(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: image )
-        bot.api.send_message(chat_id: message.chat.id, text: "Rating %s \nTitle %s \nOverview: %s \nRelease Date %s" %text_array)
+        bot.api.send_message(chat_id: message.chat.id, text: "Rating %s \nTitle %s \nOverview: %s \nRelease Date %s" %text_array.values())
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{trailer}")
-
-
       end
       
       
-      
-      
+
     end
   end
 end
+
