@@ -3,9 +3,11 @@
 require 'telegram/bot'
 require './token.rb'
 require './lib/movie_api.rb'
-token = TOKEN
-movie = Movies.new
 
+movie = Movies.new
+#           Config vars
+token = os.environ['TOKEN']
+some_api_token = os.environ['API_KEY']
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
