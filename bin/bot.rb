@@ -248,7 +248,7 @@ Telegram::Bot::Client.run(token) do |bot|
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
     else
-      bot.api.send_message(chat_id: message.chat.id, text: "That is not a valid command")
+      bot.api.send_message(chat_id: message.chat.id, text: 'That is not a valid command')
       bot.api.send_message(chat_id: message.chat.id, text: "
         Try on one of the following commands for the genre you want\n/action\n/comedy\n/romance\n/drama\n/adventure\n/crime\n/documentary\n/war\n/western or\n/stop to end this session")
     end

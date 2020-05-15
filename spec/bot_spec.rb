@@ -35,6 +35,5 @@ RSpec.describe 'MovieTellBot' do
       validation = image_url.include? 'https://image.tmdb.org/t/p/w500/'
       expect(validation).to eq(true)
     end
-    
   end
 end
