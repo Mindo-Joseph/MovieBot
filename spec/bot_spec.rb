@@ -35,7 +35,6 @@ RSpec.describe 'MovieTellBot' do
       validation = image_url.include? 'https://image.tmdb.org/t/p/w500/'
       expect(validation).to eq(true)
     end
-    it 'raises a timeout error when querying db takes too long' do
-    end
+    
   end
 end
