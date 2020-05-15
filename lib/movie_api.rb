@@ -1,5 +1,5 @@
 require 'rest-client'
-require '/home/joe/Desktop/Projects/TeleBot/token.rb'
+require './token.rb'
 require 'json'
 require 'telegram/bot'
 class Movies
