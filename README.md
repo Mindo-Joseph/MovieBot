@@ -19,7 +19,11 @@ This is a bot that shows you the trending movies in the selected genre and also 
 - Then while in the current directory run 'rspec' in your terminal
 
 ## Live Demo
+-To be added after I learn how to deploy a bot
 
+## Upcoming features
+- Generate movie list based on location to make it suitable for all countries
+- Suggest movies based on user defined dates
 👤 **Author**
 
 ***Joseph Mindo***
