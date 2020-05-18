@@ -1,5 +1,5 @@
 require 'rest-client'
-require './token.rb'
+require_relative '../keys.rb'
 require 'json'
 require 'telegram/bot'
 class Movies
@@ -35,8 +35,16 @@ class Movies
       url: "http://api.themoviedb.org/3/movie/#{id}/videos?api_key=#{API_KEY}"
     ).execute
     result = JSON.parse(response.to_s)
-    key = result['results'][0].fetch('key')
-    "https://www.youtube.com/watch?v=#{key}"
+    if result['results'].length == 0
+      return "There is no available information for this movie right now"
+    elsif result['results'][0].has_key?('key') == false
+      return "Unfortunately I cannot find the trailer for this, sorry"
+    else
+      key = result['results'][0].fetch('key')
+
+      return "https://www.youtube.com/watch?v=#{key}"
+    end
+    
   end
 
   def generate_poster_link(item)
@@ -56,3 +64,8 @@ def result_data(item)
   output << trailer
   output
 end
+movie = Movies.new
+all_details = movie.query_database_based_on_genre(99)
+# essential_details = movie.fetch_movie_details(all_details[0])
+youtube_link = movie.generate_youtube_link(all_details[0])
+print youtube_link
