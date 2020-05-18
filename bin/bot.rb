@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
-
 require 'telegram/bot'
 require_relative '../keys.rb'
 require './lib/movie_api.rb'
-token = TOKEN
+
 movie = Movies.new
 
-Telegram::Bot::Client.run(token) do |bot|
+Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
     case message.text
     when '/start'

@@ -48,8 +48,15 @@ class Movies
   end
 
   def generate_poster_link(item)
-    img_url = item.fetch('poster_path')
-    "https://image.tmdb.org/t/p/w500/#{img_url}"
+
+    if item.has_key?('poster_path') == false
+      return "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TivqJXhvJUEE3pcexwYmwgHaFj%26pid%3DApi&f=1"
+    elsif item.fetch('poster_path') == nil
+      return "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TivqJXhvJUEE3pcexwYmwgHaFj%26pid%3DApi&f=1"
+    else 
+      img_url = item.fetch('poster_path')
+      return "https://image.tmdb.org/t/p/w500/#{img_url}"
+    end
   end
 end
 
@@ -64,8 +71,3 @@ def result_data(item)
   output << trailer
   output
 end
-movie = Movies.new
-all_details = movie.query_database_based_on_genre(99)
-# essential_details = movie.fetch_movie_details(all_details[0])
-youtube_link = movie.generate_youtube_link(all_details[0])
-print youtube_link
