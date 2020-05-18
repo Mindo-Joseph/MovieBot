@@ -64,6 +64,10 @@ RSpec.describe 'MovieTellBot' do
       link = movies.instance_eval { generate_youtube_link(detail) }
       expect(link).to eq("https://www.youtube.com/watch?v=3456728")
     end
-
+    it 'returns link to error 404 image when poster path is not in hash' do
+      details = {"popularity"=>213.559, "vote_count"=>2272, "video"=>false,"id"=>338762, "adult"=>false, "backdrop_path"=>"/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", "original_language"=>"en", "original_title"=>"Bloodshot", "genre_ids"=>[28, 18, 878], "title"=>"Bloodshot", "vote_average"=>7.1, "overview"=>" the conspiracy than he thought.", "release_date"=>"2020-03-05"}
+      output = movies.instance_eval {generate_poster_link(details)}
+      expect(output).to eq("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TivqJXhvJUEE3pcexwYmwgHaFj%26pid%3DApi&f=1")
+    end
   end
 end
