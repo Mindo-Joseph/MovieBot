@@ -13,13 +13,21 @@ This is a bot that shows you the trending movies in the selected genre and also 
     bin/bot.rb
 - Now this will start the bot
 - Head over to [Bot](http://t.me/MovieTellBot) and press "START"
+- Choose your preferred genre and wait for the bot to reply
+
+## Important points on use
+
+- Note you must have an active internet connection
+- This bot works only in Telegram
+- Once you run bin/bot.rb just headover to [Bot](http://t.me/MovieTellBot) and work from there
+- To terminate the progam press CTRL + C in your terminal
 
 ### How to run tests
 - Clone this repository into your local environment
 - Then while in the current directory run 'rspec' in your terminal
 
 ## Live Demo
--To be added after I learn how to deploy a bot
+
 
 ## Upcoming features
 - Generate movie list based on location to make it suitable for all countries.

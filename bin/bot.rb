@@ -2,31 +2,32 @@
 require 'telegram/bot'
 require_relative '../keys.rb'
 require './lib/movie_api.rb'
-
+# rubocop:disable Layout/LineLength
 movie = Movies.new
-
 Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
+    def respond(item); end
     case message.text
     when '/start'
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
       bot.api.send_message(chat_id: message.chat.id, text: 'Welcome, I am here to give you movie recommendations')
-      bot.api.send_message(chat_id: message.chat.id, text: "
-        Type on one of the following commands for the genre you want\n/action\n/comedy\n/romance\n/drama\n/adventure\n/crime\n/documentary\n/war\n/western or\n/stop to end this session")
+      bot.api.send_message(chat_id: message.chat.id, text:
+        "Choose a genre\n/action\n/comedy\n/romance\n/drama\n/adventure\n/crime\n/documentary\n/war or\n/stop to quit")
 
     when '/stop'
-      bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}, hope to hear from you soon ")
+      bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name},hope to hear from you soon")
 
     when '/action'
-      bot.api.send_message(chat_id: message.chat.id, text: 'Great choice! Lemme get what might action movies interest you')
       bot.api.send_message(chat_id: message.chat.id, text: 'These are the top 3 highest movies today in your category')
       code = movie.genre_code('action')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
         c = movie.result_data(k)
-        bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
-        bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
-                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
+        bot.api.send_photo(chat_id: message.chat.id, photo: item[0])
+        bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\n
+        Title: %<title>s\nOverview: %<overview>s\nRelease Date%<release>s",
+                                                                    rating: item[1].values[0], title: item[1].values[1], overview: item[1].values[2], release: item[1].values[3]))
+
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
 
@@ -253,3 +254,4 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
     end
   end
 end
+# rubocop:enable Layout/LineLength
