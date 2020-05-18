@@ -23,7 +23,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('action')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -36,7 +36,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('comedy')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -48,7 +48,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('adventure')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -60,7 +60,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('animation')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -72,7 +72,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('crime')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -84,7 +84,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('documentary')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -96,7 +96,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('drama')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -108,7 +108,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('family')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -120,7 +120,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('fantasy')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -132,7 +132,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('history')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -144,7 +144,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('horror')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -156,7 +156,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('music')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -168,7 +168,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('mystery')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -180,7 +180,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('romance')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -192,7 +192,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('thriller')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -204,7 +204,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('war')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -216,7 +216,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('western')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -228,7 +228,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('sci-fi')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
@@ -240,7 +240,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       code = movie.genre_code('tv-movie')
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
-        c = result_data(k)
+        c = movie.result_data(k)
         bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\nTitle: %<title>s\nOverview: %<overview>s\nRelease Date %<release>s",
                                                                     rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
