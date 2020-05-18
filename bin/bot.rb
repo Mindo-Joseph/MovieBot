@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'telegram/bot'
-require './token.rb'
+require_relative '../keys.rb'
 require './lib/movie_api.rb'
 token = TOKEN
 movie = Movies.new
