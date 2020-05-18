@@ -45,6 +45,25 @@ RSpec.describe 'MovieTellBot' do
       expect(link).to eq("There is no available information for this movie right now")
       
     end
+    it 'returns an error message when there is no key to append to url' do
+      detail = {"popularity"=>213.559, "vote_count"=>2272, "video"=>false, "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "id"=>456789, "adult"=>false, "backdrop_path"=>"/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", "original_language"=>"en", "original_title"=>"Bloodshot", "genre_ids"=>[28, 18, 878], "title"=>"Bloodshot", "vote_average"=>7.1, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.", "release_date"=>"2020-03-05"}
+      stub_request(:get, 'http://api.themoviedb.org/3/movie/456789/videos?api_key=13c28895df1f68549cdcd48b1df01d13')
+      .to_return(status: 200, body: '{"id":456789,"results":[{"id":768879, "link":"some"}]}')
+      result = {'id':456789,"results":[{"id":768879, "link":"some"}]}
+      # call the generate_youtube_link method
+      link = movies.instance_eval { generate_youtube_link(detail) }
+      expect(link).to eq("Unfortunately I cannot find the trailer for this, sorry")
+    end
+
+    it 'returns youtube link ' do
+      detail = {"popularity"=>213.559, "vote_count"=>2272, "video"=>false, "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "id"=>338762, "adult"=>false, "backdrop_path"=>"/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", "original_language"=>"en", "original_title"=>"Bloodshot", "genre_ids"=>[28, 18, 878], "title"=>"Bloodshot", "vote_average"=>7.1, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.", "release_date"=>"2020-03-05"}
+      stub_request(:get, 'http://api.themoviedb.org/3/movie/338762/videos?api_key=13c28895df1f68549cdcd48b1df01d13')
+      .to_return(status: 200, body: '{"id":338762,"results":[{"id":768879, "link":"some","key":3456728}]}')
+      result = {'id':338762,"results":[{"id":768879, "link":"some","key":3456728}]}
+      # call the generate_youtube_link method
+      link = movies.instance_eval { generate_youtube_link(detail) }
+      expect(link).to eq("https://www.youtube.com/watch?v=3456728")
+    end
 
   end
 end
