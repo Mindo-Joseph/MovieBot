@@ -23,10 +23,10 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       result = movie.query_database_based_on_genre(code)
       result.each do |k|
         c = movie.result_data(k)
-        bot.api.send_photo(chat_id: message.chat.id, photo: item[0])
+        bot.api.send_photo(chat_id: message.chat.id, photo: c[0])
         bot.api.send_message(chat_id: message.chat.id, text: format("Rating: %<rating>s\n
         Title: %<title>s\nOverview: %<overview>s\nRelease Date%<release>s",
-                                                                    rating: item[1].values[0], title: item[1].values[1], overview: item[1].values[2], release: item[1].values[3]))
+                                                                    rating: c[1].values[0], title: c[1].values[1], overview: c[1].values[2], release: c[1].values[3]))
 
         bot.api.send_message(chat_id: message.chat.id, text: "Here is the trailer #{c[2]}")
       end
