@@ -9,10 +9,12 @@ This is a bot that shows you the trending movies in the selected genre and also 
 - Once cloned open terminal and type   
     bundle
 - This installs the project dependencies on your computer
-- Once installed, run the command
+- Once installed, checkout to the branch feature/bot using the following command:
+    git checkout feature/bot
+- Start the bot by running
     bin/bot.rb
 - Now this will start the bot
-- Head over to [Bot](http://t.me/MovieTellBot) and press "START"
+- Head over to [Bot](http://t.me/MovieTellBot) on your phone or PC and press "START"
 - Choose your preferred genre and wait for the bot to reply
 
 ## Important points on use
