@@ -1,4 +1,4 @@
-require_relative'../lib/movie_api.rb'
+require_relative '../lib/movie_api.rb'
 RSpec.describe 'MovieTellBot' do
   describe 'Movies' do
     let(:movies) { Movies.new }
