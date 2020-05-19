@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'telegram/bot'
 require_relative '../keys.rb'
-require './lib/movie_api.rb'
+require_relative '../lib/movie_api.rb'
 # rubocop:disable Layout/LineLength
 movie = Movies.new
 Telegram::Bot::Client.run(TOKEN) do |bot|
