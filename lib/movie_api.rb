@@ -2,7 +2,7 @@ require 'rest-client'
 require_relative '../keys.rb'
 require 'json'
 require 'telegram/bot'
-# rubocop:disable Layout/LineLength
+
 
 class Movies
   @keys_to_use = []
@@ -21,10 +21,9 @@ class Movies
     image = generate_poster_link(item)
     text_array = fetch_movie_details(item)
     trailer = generate_youtube_link(item)
-    output << image
-    output << text_array
-    output << trailer
-    output
+    output << image << text_array << trailer
+    output 
+    
   end
 
   def query_database_based_on_genre(genre_code)
