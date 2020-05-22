@@ -1,3 +1,4 @@
-source 'https:rubygems.org '
+source 'https://rubygems.org'
 gem 'rest-client'
 gem 'telegram-bot-ruby'
+gem 'webmock'
